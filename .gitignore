@@ -47,6 +47,7 @@ entra_env/
 *.jpg
 *.jpeg
 *.png
+!assets/*.png
 crops/
 recordings/
 borderline_crops/
