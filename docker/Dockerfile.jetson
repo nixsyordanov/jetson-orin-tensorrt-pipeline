@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: MIT
+# Production Dockerfile for NVIDIA Jetson Orin (JetPack 6.x / TensorRT 10)
+# Base Image: NVIDIA L4T TensorRT container
+
+FROM nvcr.io/nvidia/l4t-tensorrt:r10.3-devel
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# Install system dependencies, GStreamer plugins, and FFmpeg
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    python3-dev \
+    python3-numpy \
+    python3-opencv \
+    ffmpeg \
+    libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-tools \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip
+RUN python3 -m pip install --upgrade pip
+
+# Install Python requirements
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy repository source
+COPY . .
+
+# Default execution entrypoint: run synthetic benchmark
+CMD ["python3", "demo.py", "--config", "config.example.yaml"]

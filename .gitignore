@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+.env
+.venv
+entra_env/
+
+# TensorRT Engines & Cache (large binary files)
+*.engine
+*.plan
+*.cache
+*.onnx
+*.pt
+
+# Media & Datasets
+*.mp4
+*.avi
+*.mkv
+*.jpg
+*.jpeg
+*.png
+crops/
+recordings/
+borderline_crops/
+
+# Logs & System telemetry
+*.log
+*.csv
+!tests/fixtures/*.csv
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# PyTest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
